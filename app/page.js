@@ -32,9 +32,9 @@ export default function Home() {
       </div>
 
       {/* section 2 */}
-      <div className='grid grid-cols-12 w-full my-40 my-auto'>
+      <div className='grid grid-cols-12 w-full my-20'>
         <div className='bg-gray-800 col-span-6 my-16 rounded-r-[200px]'>
-          <img src="/public/img/landing_page/Pizza.png"></img>
+          <img src="/img/landing_page/Pizza.png" className="w-full h-full object-cover rounded-r-[200px]" alt="Pizza" />
         </div>
         <div className='mx-32 px-20 col-span-6'>
           <span className='text-5xl 2xl:text-7xl border-b-8 border-orange-500'>OUR FOOD</span>
@@ -64,8 +64,8 @@ export default function Home() {
       </div>
 
       {/* section 3 */}
-      <span className='text-4xl 2xl:text-6xl border-b-8 border-white'>ONLINE OFFERS</span>
-      <div className='grid grid-cols-12 w-full my-40 my-auto'>
+      <span className='text-4xl 2xl:text-6xl border-b-8 border-white mb-10'>ONLINE OFFERS</span>
+      <div className='grid grid-cols-12 w-full mb-10'>
         <div className='rounded-lg bg-blue-200 col-span-6 mx-36 p-12 h-96'>
           Oferta 1
         </div>
