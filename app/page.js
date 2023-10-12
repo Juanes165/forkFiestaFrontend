@@ -18,7 +18,7 @@ export default function Home() {
           </div>
           <div>
             <Link href="/cart">
-              <span className="text-xl 2xl:text-3xl bg-orange-500 px-16 py-4 rounded-full text-white">Order Food</span>
+              <span className="sm:text-xl md:text-xl lg:text-3xl bg-orange-500 sm:px-8 md:px-8 lg:px-16 py-4 rounded-full text-white">Order Food</span>
             </Link>
           </div>
           <div className='my-16 inline-block'>
@@ -37,7 +37,7 @@ export default function Home() {
           <img src="/img/landing_page/Pizza.png" className="w-full h-full object-cover rounded-r-[200px]" alt="Pizza" />
         </div>
         <div className='mx-32 px-20 col-span-6'>
-          <span className='text-5xl 2xl:text-7xl border-b-8 border-orange-500'>OUR FOOD</span>
+          <span className='text-4xl 2xl:text-6xl border-b-8 border-orange-500'>OUR FOOD</span>
 
           <div className='mt-16 grid'>
             <span className='text-2xl 2xl:text-3xl'>Signature pizzas</span>
@@ -56,7 +56,7 @@ export default function Home() {
 
           <div className='mt-24'>
             <Link href="/cart">
-              <span className="text-xl 2xl:text-3xl bg-orange-500 px-16 py-4 rounded-full text-white">Order Food</span>
+              <span className="sm:text-xl md:text-xl lg:text-3xl bg-orange-500 sm:px-8 md:px-8 lg:px-16 py-4 rounded-full text-white">Order Food</span>
             </Link>
           </div>
 
@@ -75,22 +75,28 @@ export default function Home() {
       </div>
 
       {/* section 4 */}
-      <span className='text-4xl 2xl:text-6xl border-b-8 border-orange-500 mb-8'>Contact us</span>
-      <div className='bg-orange-500 px-16 py-20 rounded-lg w-1/3 mb-16'>
-        <form className='grid'>
-          <input type="text" placeholder="Name" className='bg-white mb-8 p-4 rounded-lg' />
+      {/*<div class= 'bg-fixed' style="background-image: url(...)">*/}
+        <div className='grid grid-cols-12 w-full bg-cover bg-center' style={{backgroundImage: 'url(img/landing_page/Map.png)'}}>
+          <div className='mx-32 md:col-span-12 lg:col-span-6'>
+            <span className='text-left text-4xl 2xl:text-6xl border-b-8 border-orange-500 mb-8'>Contact us</span>
+            <div className='bg-orange-500 my-10 px-10 md:py-16 lg:py-20 rounded-lg md:w-4/5 lg:w-6/7 mb-16'>
+              <form className='grid'>
+                <input type="text" placeholder="Name" className='bg-white mb-8 md:p-3 lg:p-4 rounded-lg' />
 
-          <input type="text" placeholder="Email" className='bg-white mb-8 p-4 rounded-lg' />
+                <input type="text" placeholder="Email" className='bg-white mb-8 md:p-3 lg:p-4 rounded-lg' />
 
-          <input type="text" placeholder="Message" className='bg-white mb-8 p-4 rounded-lg' />
+                <input type="text" placeholder="Message" className='bg-white mb-8 md:p-3 lg:p-4  rounded-lg' />
 
-          <label>
-            <input type="checkbox" className='p-4 mr-4' />
-            <span className='text-white'>I agree with all conditions</span>
-          </label>
-          <button className='bg-white rounded-lg mx-32 mt-8 text-orange-500 p-4'>Send</button>
-        </form>
-      </div>
+                <label>
+                  <input type="checkbox" className='p-4 mr-4' />
+                  <span className='text-white'>I agree with all conditions</span>
+                </label>
+                <button className='bg-white rounded-lg mx-32 mt-8 text-orange-500 p-4'>Send</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      {/*</div>*/}
 
       {/* footer */}
       <div className='bg-gray-800 w-full py-8 flex flex-col items-center justify-center'>
