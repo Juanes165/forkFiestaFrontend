@@ -1,131 +1,124 @@
-import Image from 'next/image'
-import Header from '@/components/Header'
-import Link from 'next/link'
+import Image from 'next/image';
+import Header from '@/components/Header';
+import Link from 'next/link';
 export default function Home() {
-  return (
-    <div className="flex min-h-screen flex-col items-center">
-      <Header />
+	return (
+		<div className="flex min-h-screen flex-col items-center ">
+			<Header />
 
-      {/* section 1 */}
-      <div className='grid grid-cols-12 w-full mt-32 my-auto'>
-        <div className='mx-24 2xl:mx-32 px:12 2xl:px-20 col-span-6'>
-          <span className='text-5xl 2xl:text-7xl'>Have no time to prepare</span>
-          <span className='text-5xl 2xl:text-7xl text-orange-500'> food</span>
-          <span className='text-5xl 2xl:text-7xl'>?</span>
-          <div className='text-lg 2xl:text-2xl text-gray-400 mb-20 2xl:mb-32 mt-8'>
-            Your favourite restaurant now have online orders,
-            enjoy the best food and drinks without leaving your home
-          </div>
-          <div>
-            <Link href="/cart">
-              <span className="sm:text-xl md:text-xl lg:text-3xl bg-orange-500 sm:px-8 md:px-8 lg:px-16 py-4 rounded-full text-white">Order Food</span>
-            </Link>
-          </div>
-          <div className='my-16 inline-block'>
-            <div>twitter</div>
-            <div>insta</div>
-          </div>
+			{/* section 1 */}
+			<div className="grid grid-cols-12 w-full mt-32 my-auto">
+				<div className="mx-24 2xl:mx-32 px:12 2xl:px-20 col-span-6">
+					<span className="text-5xl 2xl:text-7xl">Have no time to prepare</span>
+					<span className="text-5xl 2xl:text-7xl text-orange-500"> food</span>
+					<span className="text-5xl 2xl:text-7xl">?</span>
+					<div className="text-lg 2xl:text-2xl text-gray-400 mb-20 2xl:mb-32 mt-8">
+						Your favourite restaurant now have online orders, enjoy the best food and drinks without leaving your home
+					</div>
+					<div>
+						<Link href="/cart">
+							<span className="sm:text-xl md:text-xl lg:text-3xl bg-orange-500 sm:px-8 md:px-8 lg:px-16 py-4 rounded-full text-white">Order Food</span>
+						</Link>
+					</div>
+					<div className="my-16 inline-block">
+						<div>twitter</div>
+						<div>insta</div>
+					</div>
+				</div>
+				<div className="bg-gray-800 col-span-6"></div>
+			</div>
 
-        </div>
-        <div className='bg-gray-800 col-span-6'>
-        </div>
-      </div>
+			{/* section 2 */}
+			<div className="grid grid-cols-12 w-full my-20">
+				<div className="bg-gray-800 col-span-6 my-16 rounded-r-[200px]">
+					<img src="/img/landing_page/Pizza.png" className="w-full h-full object-cover rounded-r-[200px]" alt="Pizza" />
+				</div>
+				<div className="mx-2 px-20 col-span-6">
+					<span className="text-4xl 2xl:text-6xl border-b-8 border-orange-500">OUR FOOD</span>
 
-      {/* section 2 */}
-      <div className='grid grid-cols-12 w-full my-20'>
-        <div className='bg-gray-800 col-span-6 my-16 rounded-r-[200px]'>
-          <img src="/img/landing_page/Pizza.png" className="w-full h-full object-cover rounded-r-[200px]" alt="Pizza" />
-        </div>
-        <div className='mx-32 px-20 col-span-6'>
-          <span className='text-4xl 2xl:text-6xl border-b-8 border-orange-500'>OUR FOOD</span>
+					<div className="mt-16 grid">
+						<span className="text-2xl 2xl:text-3xl">Signature pizzas</span>
+						<span className="text-md 2xl:text-xl text-gray-400 mt-2">The best pizzas of Cali!</span>
+					</div>
 
-          <div className='mt-16 grid'>
-            <span className='text-2xl 2xl:text-3xl'>Signature pizzas</span>
-            <span className='text-md 2xl:text-xl text-gray-400 mt-2'>The best pizzas of Cali!</span>
-          </div>
+					<div className="mt-8 grid">
+						<span className="text-2xl 2xl:text-3xl">Oven-Baked Subs</span>
+						<span className="text-md 2xl:text-xl text-gray-400 mt-2">
+							Choose the ingredients, choose delivery time and enjoy elicious food without leaving your house
+						</span>
+					</div>
 
-          <div className='mt-8 grid'>
-            <span className='text-2xl 2xl:text-3xl'>Oven-Baked Subs</span>
-            <span className='text-md 2xl:text-xl text-gray-400 mt-2'>Choose the ingredients, choose delivery time and enjoy elicious food without leaving your house</span>
-          </div>
+					<div className="mt-8 grid">
+						<span className="text-2xl 2xl:text-3xl">Wings, Sides & More</span>
+						<span className="text-md 2xl:text-xl text-gray-400 mt-2">Delicious wings for you and your family</span>
+					</div>
 
-          <div className='mt-8 grid'>
-            <span className='text-2xl 2xl:text-3xl'>Wings, Sides & More</span>
-            <span className='text-md 2xl:text-xl text-gray-400 mt-2'>Delicious wings for you and your family</span>
-          </div>
+					<div className="mt-24">
+						<Link href="/cart">
+							<span className="sm:text-xl md:text-xl lg:text-3xl bg-orange-500 sm:px-8 md:px-8 lg:px-16 py-4 rounded-full text-white">Order Food</span>
+						</Link>
+					</div>
+				</div>
+			</div>
 
-          <div className='mt-24'>
-            <Link href="/cart">
-              <span className="sm:text-xl md:text-xl lg:text-3xl bg-orange-500 sm:px-8 md:px-8 lg:px-16 py-4 rounded-full text-white">Order Food</span>
-            </Link>
-          </div>
+			{/* section 3 */}
+			<span className="text-4xl 2xl:text-6xl border-b-8 border-white mb-10">ONLINE OFFERS</span>
+			<div className="grid grid-cols-12 w-full mb-10">
+				<div className="rounded-lg bg-blue-200 col-span-6 mx-36 p-12 h-96">Oferta 1</div>
+				<div className="rounded-lg bg-blue-200 col-span-6 mx-36 p-12 h-96">Oferta 2</div>
+			</div>
 
-        </div>
-      </div>
+			{/* section 4 */}
+			{/*<div class= 'bg-fixed' style="background-image: url(...)">*/}
+			<div className="grid grid-cols-12 w-full bg-cover bg-center" style={{backgroundImage: 'url(img/landing_page/Map.png)'}}>
+				<div className="mx-32 md:col-span-12 lg:col-span-6">
+					<span className="text-left text-4xl 2xl:text-6xl border-b-8 border-orange-500 mb-8">Contact us</span>
+					<div className="bg-orange-500 my-10 px-10 md:py-16 lg:py-20 rounded-lg md:w-4/5 lg:w-6/7 mb-16">
+						<form className="grid">
+							<input type="text" placeholder="Name" className="bg-white mb-8 md:p-3 lg:p-4 rounded-lg" />
 
-      {/* section 3 */}
-      <span className='text-4xl 2xl:text-6xl border-b-8 border-white mb-10'>ONLINE OFFERS</span>
-      <div className='grid grid-cols-12 w-full mb-10'>
-        <div className='rounded-lg bg-blue-200 col-span-6 mx-36 p-12 h-96'>
-          Oferta 1
-        </div>
-        <div className='rounded-lg bg-blue-200 col-span-6 mx-36 p-12 h-96'>
-          Oferta 2
-        </div>
-      </div>
+							<input type="text" placeholder="Email" className="bg-white mb-8 md:p-3 lg:p-4 rounded-lg" />
 
-      {/* section 4 */}
-      {/*<div class= 'bg-fixed' style="background-image: url(...)">*/}
-        <div className='grid grid-cols-12 w-full bg-cover bg-center' style={{backgroundImage: 'url(img/landing_page/Map.png)'}}>
-          <div className='mx-32 md:col-span-12 lg:col-span-6'>
-            <span className='text-left text-4xl 2xl:text-6xl border-b-8 border-orange-500 mb-8'>Contact us</span>
-            <div className='bg-orange-500 my-10 px-10 md:py-16 lg:py-20 rounded-lg md:w-4/5 lg:w-6/7 mb-16'>
-              <form className='grid'>
-                <input type="text" placeholder="Name" className='bg-white mb-8 md:p-3 lg:p-4 rounded-lg' />
+							<input type="text" placeholder="Message" className="bg-white mb-8 md:p-3 lg:p-4  rounded-lg" />
 
-                <input type="text" placeholder="Email" className='bg-white mb-8 md:p-3 lg:p-4 rounded-lg' />
+							<label>
+								<input type="checkbox" className="p-4 mr-4" />
+								<span className="text-white">I agree with all conditions</span>
+							</label>
+							<button className="bg-white rounded-lg mx-32 mt-8 text-orange-500 p-4">Send</button>
+						</form>
+					</div>
+				</div>
+			</div>
+			{/*</div>*/}
 
-                <input type="text" placeholder="Message" className='bg-white mb-8 md:p-3 lg:p-4  rounded-lg' />
-
-                <label>
-                  <input type="checkbox" className='p-4 mr-4' />
-                  <span className='text-white'>I agree with all conditions</span>
-                </label>
-                <button className='bg-white rounded-lg mx-32 mt-8 text-orange-500 p-4'>Send</button>
-              </form>
-            </div>
-          </div>
-        </div>
-      {/*</div>*/}
-
-      {/* footer */}
-      <div className='bg-gray-800 w-full py-8 flex flex-col items-center justify-center'>
-        <div className='grid grid-cols-12 w-full mx-auto'>
-          <div className='col-span-4 mx-auto'>
-            <span className='text-white text-2xl font-bold'>FORK.</span>
-            <span className='text-orange-500 text-2xl font-bold'>FIESTA</span>
-          </div>
-          <div className='col-span-3 flex flex-col justify-end'>
-          <div className='text-white text-xl font-extrabold mr-8'>Contact</div>
-            <div className='text-white mr-8'>Street 42 #85C-13, Caney</div>
-            <div className='text-white mr-8'>Cali, Valle del Cauca</div>
-            <div className='text-white mr-8'>Telephone: +57 312 345 6789</div>
-            <div className='text-white mr-8'>E-mail: service@forkfiesta.com</div>
-          </div>
-          <div className='col-span-3 flex flex-col justify-end'>
-          <div className='text-white text-xl font-extrabold mr-8'>Menu</div>
-            <div className='text-white mr-8'>About us</div>
-            <div className='text-white mr-8'>Reservation</div>
-            <div className='text-white mr-8'>Services</div>
-            <div className='text-white mr-8'>Contact</div>
-          </div>
-          <div className='col-span-2'>
-            <span className='text-white font-extrabold'>Follow Us</span>
-          </div>
-        </div>
-        <div className='text-white mt-8'>© 2023 Fork.Fiesta. All rights reserved</div>
-      </div>
-
-    </div>
-  )
+			{/* footer */}
+			<div className="bg-gray-800 w-full py-8 flex flex-col items-center justify-center">
+				<div className="grid grid-cols-12 w-full mx-auto">
+					<div className="col-span-4 mx-auto">
+						<span className="text-white text-2xl font-bold">FORK.</span>
+						<span className="text-orange-500 text-2xl font-bold">FIESTA</span>
+					</div>
+					<div className="col-span-3 flex flex-col justify-end">
+						<div className="text-white text-xl font-extrabold mr-8">Contact</div>
+						<div className="text-white mr-8">Street 42 #85C-13, Caney</div>
+						<div className="text-white mr-8">Cali, Valle del Cauca</div>
+						<div className="text-white mr-8">Telephone: +57 312 345 6789</div>
+						<div className="text-white mr-8">E-mail: service@forkfiesta.com</div>
+					</div>
+					<div className="col-span-3 flex flex-col justify-end">
+						<div className="text-white text-xl font-extrabold mr-8">Menu</div>
+						<div className="text-white mr-8">About us</div>
+						<div className="text-white mr-8">Reservation</div>
+						<div className="text-white mr-8">Services</div>
+						<div className="text-white mr-8">Contact</div>
+					</div>
+					<div className="col-span-2">
+						<span className="text-white font-extrabold">Follow Us</span>
+					</div>
+				</div>
+				<div className="text-white mt-8">© 2023 Fork.Fiesta. All rights reserved</div>
+			</div>
+		</div>
+	);
 }
