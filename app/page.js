@@ -1,4 +1,6 @@
-import Image from 'next/image';
+import {AiOutlineInstagram} from 'react-icons/ai'
+import {RiTwitterXLine} from 'react-icons/ri'
+import {BiLogoFacebook} from 'react-icons/bi'
 import Header from '@/components/Header';
 import Link from 'next/link';
 export default function Home() {
@@ -17,12 +19,12 @@ export default function Home() {
 					</div>
 					<div>
 						<Link href="/cart">
-							<span className="sm:text-xl md:text-xl lg:text-3xl bg-orange-500 sm:px-8 md:px-8 lg:px-16 py-4 rounded-full text-white">Order Food</span>
+							<span className="xs:text-lg sm:text-xl md:text-xl lg:text-3xl bg-orange-500 xs:px-6 sm:px-8 md:px-8 lg:px-16 py-4 rounded-full text-white">Order Food</span>
 						</Link>
 					</div>
-					<div className="my-16 inline-block">
-						<div>twitter</div>
-						<div>insta</div>
+					<div className="sm:text-3xl md:text-4xl lg:text-5xl my-16 inline-block">
+						<div className='float-left block mx-8'><RiTwitterXLine /></div>
+						<div className='float-right block mr-5'><AiOutlineInstagram /></div>
 					</div>
 				</div>
 				<div className="bg-gray-800 col-span-6"></div>
@@ -70,51 +72,56 @@ export default function Home() {
 
 			{/* section 4 */}
 			{/*<div class= 'bg-fixed' style="background-image: url(...)">*/}
-			<div className="grid grid-cols-12 w-full bg-cover bg-center" style={{backgroundImage: 'url(img/landing_page/Map.png)'}}>
-				<div className="mx-32 md:col-span-12 lg:col-span-6">
-					<span className="text-left text-4xl 2xl:text-6xl border-b-8 border-orange-500 mb-8">Contact us</span>
-					<div className="bg-orange-500 my-10 px-10 md:py-16 lg:py-20 rounded-lg md:w-4/5 lg:w-6/7 mb-16">
-						<form className="grid">
-							<input type="text" placeholder="Name" className="bg-white mb-8 md:p-3 lg:p-4 rounded-lg" />
+			<div className='grid grid-cols-12 w-full bg-cover bg-center' style={{backgroundImage: 'url(img/landing_page/Map.png)'}}>
+        <div className='mx-32 sm:col-span-12 md:col-span-12 lg:col-span-6'>
+          <span className='text-left text-4xl 2xl:text-6xl border-b-8 border-orange-500 mb-8'>Contact us</span>
+          <div className='bg-orange-500 my-10 px-10 sm:py-16 md:py-16 lg:py-20 rounded-lg w-full mb-16'>
+            <form className='grid'>
+              <input type="text" placeholder="Name" className='bg-white mb-8 sm:p-3 md:p-3 lg:p-4 rounded-lg' />
 
-							<input type="text" placeholder="Email" className="bg-white mb-8 md:p-3 lg:p-4 rounded-lg" />
+              <input type="text" placeholder="Email" className='bg-white mb-8 sm:p-3 lg:p-4 rounded-lg' />
 
-							<input type="text" placeholder="Message" className="bg-white mb-8 md:p-3 lg:p-4  rounded-lg" />
+              <input type="text" placeholder="Message" className='bg-white mb-8 sm:p-3 lg:p-4  rounded-lg' />
 
-							<label>
-								<input type="checkbox" className="p-4 mr-4" />
-								<span className="text-white">I agree with all conditions</span>
-							</label>
-							<button className="bg-white rounded-lg mx-32 mt-8 text-orange-500 p-4">Send</button>
-						</form>
-					</div>
-				</div>
-			</div>
+              <label>
+                <input type="checkbox" className='p-4 mr-4' />
+                <span className='text-white'>I agree with all conditions</span>
+              </label>
+              <button className='bg-white rounded-lg mx-32 mt-8 text-orange-500 p-4'>Send</button>
+            </form>
+          </div>
+        </div>
+      </div>
 			{/*</div>*/}
 
 			{/* footer */}
 			<div className="bg-gray-800 w-full py-8 flex flex-col items-center justify-center">
 				<div className="grid grid-cols-12 w-full mx-auto">
 					<div className="col-span-4 mx-auto">
-						<span className="text-white text-2xl font-bold">FORK.</span>
-						<span className="text-orange-500 text-2xl font-bold">FIESTA</span>
+						<span className="text-white text-3xl font-bold">FORK.</span>
+						<span className="text-orange-500 text-3xl font-bold">FIESTA</span>
 					</div>
-					<div className="col-span-3 flex flex-col justify-end">
+					<div className="col-span-3 flex flex-col">
 						<div className="text-white text-xl font-extrabold mr-8">Contact</div>
 						<div className="text-white mr-8">Street 42 #85C-13, Caney</div>
 						<div className="text-white mr-8">Cali, Valle del Cauca</div>
 						<div className="text-white mr-8">Telephone: +57 312 345 6789</div>
 						<div className="text-white mr-8">E-mail: service@forkfiesta.com</div>
 					</div>
-					<div className="col-span-3 flex flex-col justify-end">
-						<div className="text-white text-xl font-extrabold mr-8">Menu</div>
-						<div className="text-white mr-8">About us</div>
-						<div className="text-white mr-8">Reservation</div>
-						<div className="text-white mr-8">Services</div>
-						<div className="text-white mr-8">Contact</div>
+					<div className="col-span-2 flex flex-col">
+						<div className="text-white text-xl font-extrabold mr-4">Menu</div>
+						<div className="text-white mr-4">About us</div>
+						<div className="text-white mr-4">Reservation</div>
+						<div className="text-white mr-4">Services</div>
+						<div className="text-white mr-4">Contact</div>
 					</div>
-					<div className="col-span-2">
+					<div className="col-span-3 flex flex-col">
 						<span className="text-white font-extrabold">Follow Us</span>
+            <div className="flex sm:text-lg md:text-xl lg:text-2xl my-8 inline-block">
+						  <div className='float-left text-orange-500 bg-white rounded-full p-2'><BiLogoFacebook /></div>
+              <div className='float-middle text-orange-500 mx-4 bg-white rounded-full p-2'><RiTwitterXLine /></div>
+						  <div className='float-right text-orange-500 bg-white rounded-full p-2'><AiOutlineInstagram /></div>
+					  </div>
 					</div>
 				</div>
 				<div className="text-white mt-8">© 2023 Fork.Fiesta. All rights reserved</div>
