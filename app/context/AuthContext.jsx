@@ -3,6 +3,7 @@ import { auth } from "../firebase.config";
 import { useState, useEffect } from "react";
 import React, { createContext, useContext } from "react";
 import {
+    getAuth,
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
     GoogleAuthProvider,
@@ -10,6 +11,7 @@ import {
     signOut,
     sendPasswordResetEmail,
     onAuthStateChanged,
+    updateProfile,
 } from "firebase/auth";
 
 // restablecimiento de contraseña
@@ -33,13 +35,30 @@ export function AuthProvider({ children }) {
 
     const [user, setUser] = useState("");
 
-    // registro manual
-    const register = async (email, password) => {
-        const response = await createUserWithEmailAndPassword(
-            auth,
-            email,
-            password
-        );
+    // registro manual 
+
+    const register = async (email, password, displayName) => {
+        console.log("1", displayName);
+        try {
+            const response = await createUserWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
+
+            // Si el registro fue exitoso, actualiza el nombre de usuario.
+            if (response.user) {
+                await updateProfile(response.user.auth.currentUser, { displayName: displayName, photoURL:"https://app.cdnstabletransit.net/images/avatar-whiteback.png" }).then(
+                    () => {console.log("Updated name succesfully")}
+                ).catch(
+                    (error) => console.log(error)
+                );
+            }
+
+        } catch (error) {
+            console.error("Error al registrar el usuario:", error);
+        }
+
         // if (response.user) {
         //     sendEmailVerification(auth.currentUser)
         //         .then(() => {

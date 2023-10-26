@@ -12,12 +12,17 @@ function LoginForm({ showForm, setShowForm }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+    const [displayName, setDisplayName] = useState('');
 
     // const [registerPasswordConfirm, setRegisterPasswordConfirm] = useState("");
     // const [verificationSent, setVerificationSent] = useState(false);
     // const [emailExists, setEmailExists] = useState(false);
 
     const [showLogin, setShowLogin] = useState(true);
+
+    const handleDisplayNameChange = (e) => {
+        setDisplayName(e.target.value);
+    };
 
     const handleLoginEmailChange = (e) => {
         setEmail(e.target.value);
@@ -26,7 +31,7 @@ function LoginForm({ showForm, setShowForm }) {
     const handleLoginPasswordChange = (e) => {
         setPassword(e.target.value);
     };
-
+    
     const handleConfirmPasswordChange = (e) => {
         setConfirmPassword(e.target.value);
     };
@@ -52,20 +57,23 @@ function LoginForm({ showForm, setShowForm }) {
             setEmail('');
             setPassword('');
             setConfirmPassword('');
+            
         } catch (error) {
             setError('Usuario o contraseña inválidos');
         }
     };
 
+
     const handleRegister = async (e) => {
         e.preventDefault();
+        console.log(displayName);
         try {
-            await register(email, password);
-            // setVerificationSent(true);
-            // setEmailExists(false);
+            // Aquí puedes capturar el nombre de usuario del formulario (por ejemplo, de un input) y pasarlo a la función register.
+            // const displayName = "NombreDeUsuario"; // Reemplaza esto por la forma en que obtienes el nombre de usuario del formulario.
+            await register(email, password, displayName);
+            
         } catch (error) {
-            // setEmailExists(true);
-            console.log(error);
+            console.error(error);
         }
         setEmail('');
         setPassword('');
@@ -114,8 +122,24 @@ function LoginForm({ showForm, setShowForm }) {
                                                 onChange={handleLoginEmailChange}
                                                 required />
                                         </div>
-
+                                        {/* Nombre de usuario */}
+                                        {showLogin ? null : (
+                                        <div>
+                                            <label htmlFor="displayName" className="block mb-2 text-sm font-medium text-gray-900">Nombre de Usuario</label>
+                                            <input
+                                                type="text"
+                                                name="displayName"
+                                                id="displayName"
+                                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:outline-none focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5"
+                                                placeholder="Your Name"
+                                                value={displayName}
+                                                onChange={handleDisplayNameChange}
+                                                required
+                                             />
+                                        </div>
+                                        )}
                                         {/*password*/}
+
                                         <div>
                                             <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900">Your password</label>
                                             <input
