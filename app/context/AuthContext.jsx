@@ -64,7 +64,7 @@ export function AuthProvider({ children }) {
     // inicio de sesion con google
     const loginWithGoogle = async () => {
         const googleProvider = new GoogleAuthProvider();
-        signInWithPopup(auth, googleProvider);
+        await signInWithPopup(auth, googleProvider);
     };
 
     // cerrar sesion

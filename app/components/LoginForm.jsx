@@ -35,9 +35,9 @@ function LoginForm({ showForm, setShowForm }) {
         e.preventDefault();
         try {
             await login(email, password);
-            //router.push('/');
+            setShowForm(false);
         } catch (error) {
-            setError('Usuario o contraseña inválidos');
+            setError('Invalid username or password');
         }
         setEmail('');
         setPassword('');
@@ -48,12 +48,12 @@ function LoginForm({ showForm, setShowForm }) {
         e.preventDefault();
         try {
             await loginWithGoogle();
-            //router.push('/');
             setEmail('');
             setPassword('');
             setConfirmPassword('');
+            setShowForm(false);          
         } catch (error) {
-            setError('Usuario o contraseña inválidos');
+            1;
         }
     };
 
@@ -61,15 +61,17 @@ function LoginForm({ showForm, setShowForm }) {
         e.preventDefault();
         try {
             await register(email, password);
+            setEmail('');
+            setPassword('');
+            setConfirmPassword('');
+            setShowForm(false);
             // setVerificationSent(true);
             // setEmailExists(false);
         } catch (error) {
             // setEmailExists(true);
             console.log(error);
         }
-        setEmail('');
-        setPassword('');
-        setConfirmPassword('');
+
     };
 
     return (
