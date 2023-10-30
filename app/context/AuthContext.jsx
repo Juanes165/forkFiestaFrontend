@@ -37,18 +37,18 @@ export function AuthProvider({ children }) {
 
     // registro manual 
 
-    const register = async (email, password, displayName) => {
-        console.log("1", displayName);
+    const register = async (email, password, displayName,photoURL) => {
+        console.log("1",photoURL);
         try {
             const response = await createUserWithEmailAndPassword(
                 auth,
                 email,
                 password
             );
-
+            //"https://app.cdnstabletransit.net/images/avatar-whiteback.png"
             // Si el registro fue exitoso, actualiza el nombre de usuario.
             if (response.user) {
-                await updateProfile(response.user.auth.currentUser, { displayName: displayName, photoURL:"https://app.cdnstabletransit.net/images/avatar-whiteback.png" }).then(
+                await updateProfile(response.user.auth.currentUser, { displayName: displayName, photoURL:photoURL}).then(
                     () => {console.log("Updated name succesfully")}
                 ).catch(
                     (error) => console.log(error)

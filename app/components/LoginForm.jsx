@@ -1,7 +1,11 @@
 "use client"
-import React, { useState } from 'react';
+import React, { useState, useRef  } from 'react';
 import { useAuth } from '../context/AuthContext.jsx';
 import { FcGoogle } from 'react-icons/fc';
+import axios from 'axios';
+
+const cloudinary_URL = 'https://api.cloudinary.com/v1_1/proyectogca/image/upload';
+const cloudinary_upload_preset = 'sk5zjw47';
 
 function LoginForm({ showForm, setShowForm }) {
 
@@ -13,13 +17,34 @@ function LoginForm({ showForm, setShowForm }) {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [displayName, setDisplayName] = useState('');
-
+    const [photoURL, setPhotoURL] = useState('');
+   
     // const [registerPasswordConfirm, setRegisterPasswordConfirm] = useState("");
     // const [verificationSent, setVerificationSent] = useState(false);
     // const [emailExists, setEmailExists] = useState(false);
 
     const [showLogin, setShowLogin] = useState(true);
 
+    const handleUploadFile = async (e) => {
+        const file = e.target.files[0];
+
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('upload_preset', cloudinary_upload_preset);
+
+        try {
+            const res = await axios.post(cloudinary_URL, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            });
+
+            const image = res.data.url;
+            setPhotoURL(image); // Store the URL in the photoURL state
+        } catch (err) {
+            console.log(err);
+        }
+    };
     const handleDisplayNameChange = (e) => {
         setDisplayName(e.target.value);
     };
@@ -66,11 +91,11 @@ function LoginForm({ showForm, setShowForm }) {
 
     const handleRegister = async (e) => {
         e.preventDefault();
-        console.log(displayName);
+        console.log(photoURL);
         try {
             // Aquí puedes capturar el nombre de usuario del formulario (por ejemplo, de un input) y pasarlo a la función register.
             // const displayName = "NombreDeUsuario"; // Reemplaza esto por la forma en que obtienes el nombre de usuario del formulario.
-            await register(email, password, displayName);
+            await register(email, password, displayName,photoURL);
             
         } catch (error) {
             console.error(error);
@@ -136,6 +161,20 @@ function LoginForm({ showForm, setShowForm }) {
                                                 onChange={handleDisplayNameChange}
                                                 required
                                              />
+                                        </div>
+                                        )}
+                                        {/* Campo de entrada para cargar la imagen */}
+                                        {showLogin ? null : (
+                                        <div>
+                                            <label htmlFor="profilePicture" className="block mb-2 text-sm font-medium text-gray-900">Foto de perfil</label>
+                                            <input
+                                                type="file"
+                                                name="profilePicture"
+                                                id="profilePicture"
+                                                accept="image/*"
+                                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:outline-none focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5"
+                                                onChange={handleUploadFile}
+                                            />
                                         </div>
                                         )}
                                         {/*password*/}
