@@ -54,6 +54,7 @@ export function AuthProvider({ children }) {
                     (error) => console.log(error)
                 );
             }
+            window.location.reload();
 
         } catch (error) {
             console.error("Error al registrar el usuario:", error);
@@ -89,6 +90,7 @@ export function AuthProvider({ children }) {
     // cerrar sesion
     const logout = async () => {
         await signOut(auth);
+        window.location.reload();
     };
 
     useEffect(() => {

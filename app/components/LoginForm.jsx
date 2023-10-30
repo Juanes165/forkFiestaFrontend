@@ -169,13 +169,14 @@ function LoginForm({ showForm, setShowForm }) {
                                         {/* Campo de entrada para cargar la imagen */}
                                         {showLogin ? null : (
                                         <div>
-                                            <label htmlFor="profilePicture" className="block mb-2 text-sm font-medium text-gray-900">Foto de perfil</label>
+                                            <label htmlFor="profilePicture" className="block mb-2 text-sm font-medium text-gray-900">Profile Picture</label>
                                             <input
                                                 type="file"
                                                 name="profilePicture"
                                                 id="profilePicture"
                                                 accept="image/*"
-                                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:outline-none focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5"
+                                                className="block w-full text-sm border border-gray-300 rounded-lg text-gray-900 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:font-semibold file:bg-orange-200 file:text-orange-700 hover:file:bg-orange-500 hover:file:text-white"
+                                                //className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:outline-none focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5"
                                                 onChange={handleUploadFile}
                                             />
                                         </div>
