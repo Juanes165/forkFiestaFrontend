@@ -1,12 +1,18 @@
+"use client";
+import React, { useState } from 'react';
 import {AiOutlineInstagram} from 'react-icons/ai'
 import {RiTwitterXLine} from 'react-icons/ri'
 import {BiLogoFacebook} from 'react-icons/bi'
-import Header from '@/components/Header';
+import { Header, LoginForm } from '@/app/components/';
 import Link from 'next/link';
 export default function Home() {
+	
+	const [showForm, setShowForm] = useState(false);
+
 	return (
 		<div className="flex min-h-screen flex-col items-center ">
-			<Header />
+			<Header setShowForm={setShowForm}/>
+			<LoginForm showForm={showForm} setShowForm={setShowForm}/>
 
 			{/* section 1 */}
 			<div className="grid grid-cols-12 w-full mt-32 my-auto">
