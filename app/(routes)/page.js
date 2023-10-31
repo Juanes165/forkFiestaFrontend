@@ -24,7 +24,7 @@ export default function Home() {
 						Your favourite restaurant now have online orders, enjoy the best food and drinks without leaving your home
 					</div>
 					<div>
-						<Link href="/cart">
+						<Link href="/order">
 							<span className="xs:text-lg sm:text-xl md:text-xl lg:text-3xl bg-orange-500 xs:px-6 sm:px-8 md:px-8 lg:px-16 py-4 rounded-full text-white">Order Food</span>
 						</Link>
 					</div>
