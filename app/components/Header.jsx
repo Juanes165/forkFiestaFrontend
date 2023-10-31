@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { useAuth } from '../context/AuthContext';
+import { useRouter } from 'next/navigation';
 
 
 const Header = ({ setShowForm }) => {
@@ -10,10 +11,13 @@ const Header = ({ setShowForm }) => {
 	const user = useAuth().user;
 	const logout = useAuth().logout;
 
+	const router = useRouter();
+
 	const handleLogout = (e) => {
 		e.preventDefault();
 		logout();
 		setShowMenu(false);
+		router.push('/');
 	};
 
 	return (
@@ -26,16 +30,16 @@ const Header = ({ setShowForm }) => {
 					</Link>
 				</div>
 				<div className="flex flex-row mx-10 items-center">
-					<Link href="/cart">
+					<Link href="/">
 						<span className="sm:text-xs md:text-xs lg:text-xl mx-4">HOME</span>
 					</Link>
-					<Link href="/cart">
+					<Link href="/menu">
 						<span className="sm:text-xs md:text-xs lg:text-xl mx-4">OUR FOOD</span>
 					</Link>
-					<Link href="/cart">
+					<Link href="/reservation">
 						<span className="sm:text-xs md:text-xs lg:text-xl mx-4">RESERVATION</span>
 					</Link>
-					<Link href="/cart">
+					<Link href="/order">
 						<span className="sm:text-xs md:text-xs lg:text-xl mx-4">ABOUT</span>
 					</Link>
 

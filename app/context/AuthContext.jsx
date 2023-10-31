@@ -14,6 +14,8 @@ import {
     updateProfile,
 } from "firebase/auth";
 
+const gatewayApiUrl = process.env.NEXT_PUBLIC_GATEWAY_API_URL;
+
 // restablecimiento de contraseña
 const resetPassword = async (email) => {
     await sendPasswordResetEmail(auth, email);
@@ -33,12 +35,13 @@ export const useAuth = () => {
 // proveedor del contexto de autenticacion
 export function AuthProvider({ children }) {
 
+
     const [user, setUser] = useState("");
 
     // registro manual 
 
-    const register = async (email, password, displayName,photoURL) => {
-        console.log("1",photoURL);
+    const register = async (email, password, displayName, photoURL) => {
+        // console.log("1",photoURL);
         try {
             const response = await createUserWithEmailAndPassword(
                 auth,
@@ -54,7 +57,10 @@ export function AuthProvider({ children }) {
                     (error) => console.log(error)
                 );
             }
-            window.location.reload();
+
+            await postToFirestore(response.user);
+
+            //window.location.reload();
 
         } catch (error) {
             console.error("Error al registrar el usuario:", error);
@@ -84,13 +90,22 @@ export function AuthProvider({ children }) {
     // inicio de sesion con google
     const loginWithGoogle = async () => {
         const googleProvider = new GoogleAuthProvider();
-        await signInWithPopup(auth, googleProvider);
+        const response = await signInWithPopup(auth, googleProvider);
+
+        if(response.user){
+            const url = `${gatewayApiUrl}/users/${response.user.uid}`;
+
+            const responseFirestore = await fetch(url);
+            const data = await responseFirestore.json();
+            if(data.length === 0){
+                await postToFirestore(response.user);
+            }
+        }
     };
 
     // cerrar sesion
     const logout = async () => {
         await signOut(auth);
-        window.location.reload();
     };
 
     useEffect(() => {
@@ -115,3 +130,21 @@ export function AuthProvider({ children }) {
         </AuthContext.Provider>
     );
 }
+
+const postToFirestore = async (user) => {
+    // POST TO FIRESTORE
+    const url = `${gatewayApiUrl}/create-user`;
+    const body = {
+        id: user.uid,
+        name: user.displayName,
+        email: user.email,
+    };
+    const responseFirestore = await fetch(url, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
+    });
+    const data = await responseFirestore.json();
+};

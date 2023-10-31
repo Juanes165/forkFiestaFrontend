@@ -1,2 +1,5 @@
 export { default as Header } from './Header'
 export { default as LoginForm } from './LoginForm'
+export { default as Loader } from './Loader'
+export { default as AddressCard } from './AddressCard'
+export { default as AddressForm } from './AddressForm'
