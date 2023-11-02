@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { Header, Loader } from "../../components";
 import { useAuth } from '../../context/AuthContext.jsx';
-import { AddressCard, AddressForm } from "../../components";
+import { AddressCard, AddressForm, OrderCard } from "../../components";
 
 const Profile = () => {
 
@@ -17,15 +17,23 @@ const Profile = () => {
 
     // Getting user address
     const [userAddresses, setUserAddresses] = useState([]);
+    const [userOrders, setUserOrders] = useState([]);
     useEffect(() => {
         const fetchUserAddresses = async () => {
             const response = await fetch(`${gatewayApiUrl}/address/${user.uid}`);
             const data = await response.json();
             setUserAddresses(data);
         };
-        if(!user) return;
+        if (!user) return;
+
+        const fetchUserOrders = async () => {
+            const response = await fetch(`${gatewayApiUrl}/orders/`);
+            const data = await response.json();
+            setUserOrders(data.reverse());
+        };
 
         fetchUserAddresses();
+        fetchUserOrders();
     }, [user]);
 
     // Loader
@@ -46,8 +54,8 @@ const Profile = () => {
                         </span>
                     </div>
 
-                    <div className="grid grid-cols-3 w-full rounded-3xl bg-cream-primary">
-                        <div className="col-span-3 md:col-span-1 py-8 md:py-24 px-4 flex justify-center bg-gray-100 flex-col">
+                    <div className="grid grid-cols-3 w-full rounded-3xl">
+                        <div className="col-span-3 md:col-span-1 py-8 md:py-24 px-4 bg-gray-200 rounded-3xl items-start">
                             <div className="w-full flex justify-center">
                                 <img
                                     src={user.photoURL ? user.photoURL : "/profileIcon.png"}
@@ -60,6 +68,11 @@ const Profile = () => {
                             <div className="flex justify-center items-center justify-items-center pt-2 px-4">
                                 <span className="text-3xl md:text-lg lg:text-3xl font-semibold text-dark-slate-blue flex justify-center items-center justify-items-center justify-self-center">
                                     <center>{user.displayName}</center>
+                                </span>
+                            </div>
+                            <div className="flex justify-center items-center justify-items-center pt-2 px-4 mt-8">
+                                <span className="text-xl md:text-lg lg:text-xl text-dark-slate-blue flex justify-center items-center justify-items-center justify-self-center">
+                                    <center>{user.email}</center>
                                 </span>
                             </div>
                         </div>
@@ -89,10 +102,15 @@ const Profile = () => {
 
                         <div className="col-span-3 md:col-span-1 md:py-2">
 
-                            <div className="flex justify-center px-4 mb-8">
+                            <div className="flex flex-col justify-center px-4 mb-8">
                                 <span className="text-xl md:text-3xl lg:text-3xl font-semibold mb-4 py-2 bg-orange-500 text-white px-4 py-2 w-full">
                                     Orders history
                                 </span>
+                                <div className="flex flex-col mt-2">
+                                    {userOrders.map((order, index) => (
+                                        <OrderCard key={index} order={order} />
+                                    ))}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -103,13 +121,5 @@ const Profile = () => {
         </>
     );
 };
-
-const info = {
-    name: "John Doe",
-    address: "1234 Main St",
-    address_details: "Apt 123",
-    phone: "123-456-7890",
-    city: "Cali",
-}
 
 export default Profile;
