@@ -3,12 +3,35 @@ import React, {useState, useEffect} from 'react';
 import {Header} from '@/app/components';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import {auth} from '../../firebase.config';
 
 const OrderFoodPage = () => {
 	const gatewayApiUrl = process.env.NEXT_PUBLIC_GATEWAY_API_URL; // The URL of the gateway API
 
 	const [menu, setMenu] = useState([]); // The menu of the restaurant
 	const [foodItems, setFoodItems] = useState([]); // The food items in the cart
+
+	const [user, setUser] = useState(null); // User State
+	const [phone, setPhone] = useState(null); // Phone State
+	const [address, setAddress] = useState(null); // Address State
+	const [paymentType, setPaymentType] = useState(null); // Payment Type State
+
+	useEffect(() => {
+		const unsubscribe = auth.onAuthStateChanged((user) => {
+			// 'user' will be null if the user is not authenticated
+			if (user) {
+				// User is signed in
+				setUser(user);
+			} else {
+				// User is signed out
+				setUser(null);
+			}
+		});
+
+		return () => unsubscribe();
+	}, []);
+
+	console.log(user);
 
 	// Handle the addition of a food item to the cart
 	const handleAddToCart = (foodItem) => {
@@ -68,13 +91,28 @@ const OrderFoodPage = () => {
 				confirmButtonColor: 'green',
 			}).then((result) => {
 				if (result.isConfirmed) {
-					Swal.fire({
-						title: 'Order confirmed',
-						text: 'Your order is on the way! Thank you for ordering with us.',
-						icon: 'success',
-						confirmButtonText: 'OK',
-						confirmButtonColor: 'green',
-					});
+					const order = {
+						order: order_summary,
+						phone,
+						address,
+						name: user.displayName,
+						payment_method: paymentType,
+					};
+
+					axios
+						.post(`${gatewayApiUrl}/create-order`, order)
+						.then((res) => {
+							Swal.fire({
+								title: 'Order confirmed',
+								text: 'Your order is on the way! Thank you for ordering with us.',
+								icon: 'success',
+								confirmButtonText: 'OK',
+								confirmButtonColor: 'green',
+							});
+						})
+						.catch((err) => {
+							console.log(err);
+						});
 				} else if (result.dismiss === Swal.DismissReason.cancel) {
 					Swal.fire({
 						title: 'Order canceled',
@@ -160,6 +198,55 @@ const OrderFoodPage = () => {
 							<p>$ {foodItems.reduce((total, foodItem) => total + foodItem.quantity * foodItem.price, 0)}</p>
 						</li>
 					</ul>
+
+					<div className="mt-4">
+						<h4 className="text-lg font-bold mb-2">Delivery Information</h4>
+						<form>
+							<div className="mb-4">
+								<label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="address">
+									Address
+								</label>
+								<input
+									className="max-w-[400px] shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+									id="address"
+									type="text"
+									placeholder="Your address"
+									onChange={(e) => setAddress(e.target.value)}
+								/>
+							</div>
+							<div className="mb-4">
+								<label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="phone">
+									Phone Number
+								</label>
+								<input
+									className="max-w-[400px] shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+									id="phone"
+									type="text"
+									placeholder="Your phone number"
+									onChange={(e) => setPhone(e.target.value)}
+								/>
+							</div>
+						</form>
+					</div>
+
+					<div className="mb-4">
+						<label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="paymentType">
+							Payment Type
+						</label>
+						<select
+							className="max-w-[400px] shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+							id="paymentType"
+							onChange={(e) => setPaymentType(e.target.value)}
+						>
+							<option value="">Select payment type</option>
+							<option value="creditCard">Credit Card</option>
+							<option value="debitCard">Debit Card</option>
+							<option value="paypal">PayPal</option>
+							<option value="paypal">Nequi</option>
+							<option value="paypal">Cash</option>
+						</select>
+					</div>
+
 					<button className="bg-orange-500 text-white px-4 py-2 rounded-md font-bold mt-4 hover:bg-green-500" onClick={handleCheckout}>
 						Checkout
 					</button>
