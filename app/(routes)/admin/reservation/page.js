@@ -1,10 +1,10 @@
 "use client";
 import React, { useEffect, useState } from 'react';
-import { Header, ReservationCard, ReservationForm } from '../../components';
+import { Header, ReservationCard, ReservationForm } from '../../../components';
 import { useRouter } from 'next/navigation';
-import { Loader } from '../../components';
-import {auth} from '../../firebase.config';
-const reservation = () => {
+import { Loader } from '../../../components';
+import {auth} from '../../../firebase.config';
+const Reservation = () => {
 
     // API GATEWAY URL
     const gatewayApiUrl = process.env.NEXT_PUBLIC_GATEWAY_API_URL;
@@ -20,9 +20,8 @@ const reservation = () => {
     
     useEffect(() => {
         const fetchUserReservation = async () => {
-            const response = await fetch(`${gatewayApiUrl}/reservations/${user.uid}`);
+            const response = await fetch(`${gatewayApiUrl}/reservations`);
             const data = await response.json();
-            console.log(data)
             setUserReservation(data);
         };
         if (!user) return;
@@ -56,12 +55,12 @@ const reservation = () => {
     return (
         <>
             <Header slug={'/'} />
-            <ReservationForm showReservationForm={showReservationForm} setShowReservationForm={setshowReservationForm} />
+            <ReservationForm showReservationForm={showReservationForm} setReservationForm={showReservationForm} />
             <div className="container mx-auto px-6 md:px-0">
                 <div className="grid grid-cols-1">
                     <div className="flex justify-center py-6">
                         <span className="text-4xl md:text-4xl lg:text-5xl font-semibold mb-4 text-dark-slate-blue">
-                            Your reservation
+                            Restaurant reservations
                         </span>
                     </div>
                     <div className="flex flex-col justify-center px-4 mb-8">
@@ -82,4 +81,4 @@ const reservation = () => {
     );
 };
 
-export default reservation;
+export default Reservation;

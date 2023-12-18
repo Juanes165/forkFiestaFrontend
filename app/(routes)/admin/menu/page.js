@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from 'react';
-import { Header } from '../../components';
+import { Header } from '../../../components';
 
 function Menu() {
 

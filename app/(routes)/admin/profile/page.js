@@ -1,8 +1,8 @@
 "use client"
 import React, { useEffect, useState } from "react";
-import { Header, Loader } from "../../components";
-import { useAuth } from '../../context/AuthContext.jsx';
-import { AddressCard, AddressForm, OrderCard } from "../../components";
+import { Header, Loader } from "../../../components";
+import { useAuth } from '../../../context/AuthContext.jsx';
+import { AddressCard, AddressForm, OrderCard } from "../../../components";
 
 const Profile = () => {
 
