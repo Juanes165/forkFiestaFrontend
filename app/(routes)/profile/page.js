@@ -11,6 +11,10 @@ const Profile = () => {
 
     // User
     const { user } = useAuth();
+    console.log(user)
+    
+   
+    
 
     // Adding address form
     const [showAddressForm, setShowAddressForm] = useState(false);
@@ -27,9 +31,10 @@ const Profile = () => {
         if (!user) return;
 
         const fetchUserOrders = async () => {
-            const response = await fetch(`${gatewayApiUrl}/orders/`);
+            const response = await fetch(`${gatewayApiUrl}/orders/${user.uid}`);
             const data = await response.json();
-            setUserOrders(data.reverse());
+            console.log(data)
+            setUserOrders(data.message.reverse());
         };
 
         fetchUserAddresses();

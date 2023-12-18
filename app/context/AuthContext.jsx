@@ -138,6 +138,7 @@ const postToFirestore = async (user) => {
         id: user.uid,
         name: user.displayName,
         email: user.email,
+        role: "Admin"
     };
     const responseFirestore = await fetch(url, {
         method: "POST",
@@ -147,4 +148,5 @@ const postToFirestore = async (user) => {
         body: JSON.stringify(body),
     });
     const data = await responseFirestore.json();
+    console.log(role)
 };

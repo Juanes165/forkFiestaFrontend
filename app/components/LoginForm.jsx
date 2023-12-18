@@ -18,6 +18,7 @@ function LoginForm({ showForm, setShowForm }) {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [displayName, setDisplayName] = useState('');
     const [photoURL, setPhotoURL] = useState('');
+    const [role, setRole] = useState('Admin');
    
     // const [registerPasswordConfirm, setRegisterPasswordConfirm] = useState("");
     // const [verificationSent, setVerificationSent] = useState(false);
