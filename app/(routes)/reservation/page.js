@@ -20,8 +20,9 @@ const reservation = () => {
     
     useEffect(() => {
         const fetchUserReservation = async () => {
-            const response = await fetch(`${gatewayApiUrl}/reservations`);
+            const response = await fetch(`${gatewayApiUrl}/reservations/${user.uid}`);
             const data = await response.json();
+            console.log(data)
             setUserReservation(data);
         };
         if (!user) return;
@@ -55,7 +56,7 @@ const reservation = () => {
     return (
         <>
             <Header slug={'/'} />
-            <ReservationForm showReservationForm={showReservationForm} setReservationForm={showReservationForm} />
+            <ReservationForm showReservationForm={showReservationForm} setShowReservationForm={setshowReservationForm} />
             <div className="container mx-auto px-6 md:px-0">
                 <div className="grid grid-cols-1">
                     <div className="flex justify-center py-6">
