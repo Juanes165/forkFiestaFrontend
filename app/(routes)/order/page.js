@@ -69,6 +69,8 @@ const OrderFoodPage = () => {
 			})
 			.join('-');
 
+	    console.log(order_message)
+
 		try {
 			// Get the summary from the microservice
 			const response = await axios.post(`${gatewayApiUrl}/write-order`, {
@@ -92,11 +94,12 @@ const OrderFoodPage = () => {
 			}).then((result) => {
 				if (result.isConfirmed) {
 					const order = {
-						order: order_summary,
+						order: response.data.message.order,
 						phone,
 						address,
 						name: user.displayName,
 						payment_method: paymentType,
+						user_id: user.uid,
 					};
 
 					axios
