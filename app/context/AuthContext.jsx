@@ -108,6 +108,11 @@ export function AuthProvider({ children }) {
         await signOut(auth);
     };
 
+    // actualizar nombre
+    const updateName = async (name) => {
+        await updateProfile(auth.currentUser, { displayName: name });
+    };
+
     useEffect(() => {
         const registered = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser);
@@ -123,12 +128,15 @@ export function AuthProvider({ children }) {
                 loginWithGoogle,
                 resetPassword,
                 logout,
+                updateName,
                 user,
             }}
         >
             {children}
         </AuthContext.Provider>
     );
+
+
 }
 
 const postToFirestore = async (user) => {
