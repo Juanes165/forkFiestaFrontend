@@ -44,7 +44,7 @@ export default function Home() {
 			<LoginForm showForm={showForm} setShowForm={setShowForm} />
 
 			{/* section 1 */}
-			<div className="grid grid-cols-12 w-full mt-32 my-auto">
+			<div className="grid grid-cols-12 w-full mt-20 my-auto">
 				<div className="mx-24 2xl:mx-32 px:12 2xl:px-20 col-span-6">
 					<span className="text-5xl 2xl:text-7xl">Have no time to prepare</span>
 					<span className="text-5xl 2xl:text-7xl text-orange-500"> food</span>
@@ -69,12 +69,14 @@ export default function Home() {
 						</div>
 					</div>
 				</div>
-				<div className="bg-gray-800 col-span-6"></div>
+				<div className="col-span-6 rounded-l-[200px] mb-24">
+					<img src="/img/landing_page/portrait.jpg" className="rounded-l-[200px] w-full h-full object-cover" alt="Logo" />
+				</div>
 			</div>
 
 			{/* section 2 */}
 			<div className="grid grid-cols-12 w-full my-20">
-				<div className="bg-gray-800 col-span-6 my-16 rounded-r-[200px]">
+				<div className="col-span-6 my-16 rounded-r-[200px]">
 					<img src="/img/landing_page/Pizza.png" className="w-full h-full object-cover rounded-r-[200px]" alt="Pizza" />
 				</div>
 				<div className="mx-2 px-20 col-span-6">
@@ -106,13 +108,6 @@ export default function Home() {
 						</span>
 					</div>
 				</div>
-			</div>
-
-			{/* section 3 */}
-			<span className="text-4xl 2xl:text-6xl border-b-8 border-white mb-10">ONLINE OFFERS</span>
-			<div className="grid grid-cols-12 w-full mb-10">
-				<div className="rounded-lg bg-blue-200 col-span-6 mx-36 p-12 h-96">Oferta 1</div>
-				<div className="rounded-lg bg-blue-200 col-span-6 mx-36 p-12 h-96">Oferta 2</div>
 			</div>
 
 			{/* section 4 */}

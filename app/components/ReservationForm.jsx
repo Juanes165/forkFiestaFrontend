@@ -25,7 +25,7 @@ function ReservationForm({ showReservationForm, setShowReservationForm }) {
     };
 
     // Submit
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         const url = `${gatewayApiUrl}/create-reservation`;
 
@@ -39,7 +39,7 @@ function ReservationForm({ showReservationForm, setShowReservationForm }) {
         };
         console.log(body)
 
-        fetch(url, {
+        await fetch(url, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -55,6 +55,7 @@ function ReservationForm({ showReservationForm, setShowReservationForm }) {
             .catch((error) => {
                 console.error("Error:", error);
             });
+        window.location.reload();
     };
 
     return (
