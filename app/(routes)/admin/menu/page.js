@@ -1,12 +1,13 @@
 "use client";
 import React, { useEffect, useState } from 'react';
-import { Header } from '../../../components';
+import { Header, MenuForm } from '../../../components';
 
 function Menu() {
 
     const gatewayApiUrl = process.env.NEXT_PUBLIC_GATEWAY_API_URL
 
     const [menu, setMenu] = useState([])
+    const [showMenuForm, setShowMenuForm] = useState(false);
 
     useEffect(() => {
         const fetchMenu = async () => {
@@ -19,7 +20,8 @@ function Menu() {
 
     return (
         <div>
-            <Header />
+            <Header slug={'/'} />
+            <MenuForm showMenuForm={showMenuForm} setShowMenuForm={setShowMenuForm} />
             <div className='container mx-auto'>
                 <h1 className='text-3xl font-semibold'>Our Menu</h1>
                 {menu.map((item) => (
@@ -34,6 +36,7 @@ function Menu() {
                         <span className='text-lg font-semibold'>${item.price}</span>
                     </div>
                 ))}
+                <span onClick={(e) => setShowMenuForm(true)} className="cursor-pointer hover:underline">+ New menu item</span>
             </div>
         </div>
     );
