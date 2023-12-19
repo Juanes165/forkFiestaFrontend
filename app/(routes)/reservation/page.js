@@ -4,7 +4,7 @@ import {Header, ReservationCard, ReservationForm} from '../../components';
 import {useRouter} from 'next/navigation';
 import {Loader} from '../../components';
 import {auth} from '../../firebase.config';
-const reservation = () => {
+const Reservation = () => {
 	// API GATEWAY URL
 	const gatewayApiUrl = process.env.NEXT_PUBLIC_GATEWAY_API_URL;
 
@@ -77,4 +77,4 @@ const reservation = () => {
 	);
 };
 
-export default reservation;
+export default Reservation;
