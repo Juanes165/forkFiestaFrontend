@@ -14,17 +14,21 @@ const Reservation = () => {
 	const [showReservationForm, setshowReservationForm] = useState(false);
 	const [loading, setLoading] = useState(true);
 
-	// Getting user reservation
-	const [userReservation, setUserReservation] = useState(null);
-
-	useEffect(() => {
-		const fetchUserReservation = async () => {
-			const response = await fetch(`${gatewayApiUrl}/reservations/${user.uid}`);
-			const data = await response.json();
-			console.log(data);
-			setUserReservation(data);
-		};
-		if (!user) return;
+    // Getting user reservation
+    const [userReservation, setUserReservation] = useState([]);
+    
+    useEffect(() => {
+        const fetchUserReservation = async () => {
+            const response = await fetch(`${gatewayApiUrl}/reservations/${user.uid}`);
+            const data = await response.json();
+            if (data.error) {
+                console.log(data.error);
+                return;
+            }
+            console.log(data)
+            setUserReservation(data);
+        };
+        if (!user) return;
 
 		fetchUserReservation();
 	}, [user]);
