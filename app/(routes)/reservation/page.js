@@ -22,6 +22,10 @@ const reservation = () => {
         const fetchUserReservation = async () => {
             const response = await fetch(`${gatewayApiUrl}/reservations/${user.uid}`);
             const data = await response.json();
+            if (data.error) {
+                console.log(data.error);
+                return;
+            }
             console.log(data)
             setUserReservation(data);
         };
