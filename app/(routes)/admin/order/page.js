@@ -3,7 +3,7 @@ import React, {useState, useEffect} from 'react';
 import {Header} from '@/app/components';
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import {auth} from '../../firebase.config';
+import {auth} from '../../../firebase.config';
 
 const OrderFoodPage = () => {
 	const gatewayApiUrl = process.env.NEXT_PUBLIC_GATEWAY_API_URL; // The URL of the gateway API

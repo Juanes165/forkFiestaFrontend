@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useAuth } from '../context/AuthContext';
 import { useRouter } from 'next/navigation';
@@ -7,7 +7,10 @@ import { useRouter } from 'next/navigation';
 
 const Header = ({ setShowForm }) => {
 
+	// API GATEWAY URL
+    const gatewayApiUrl = process.env.NEXT_PUBLIC_GATEWAY_API_URL;
 	const [showMenu, setShowMenu] = useState(false);
+	const [userData, setUserData] = useState([])
 	const user = useAuth().user;
 	const logout = useAuth().logout;
 
@@ -20,6 +23,18 @@ const Header = ({ setShowForm }) => {
 		router.push('/');
 	};
 
+	useEffect(() => {
+		// Verifica si el usuario está autenticado antes de hacer la solicitud de usuario
+		if (user) {
+		  const fetchUser = async () => {
+			const response = await fetch(`${gatewayApiUrl}/users/${user.uid}`);
+			const data = await response.json();
+			setUserData(data);
+		  };
+		  fetchUser();
+		}
+	  }, [user]);
+
 	return (
 		<header className=" w-full">
 			<div className="w-full flex justify-between items-center inline-block py-8">
@@ -30,18 +45,39 @@ const Header = ({ setShowForm }) => {
 					</Link>
 				</div>
 				<div className="flex flex-row mx-10 items-center">
-					<Link href="/">
-						<span className="sm:text-xs md:text-xs lg:text-xl mx-4">HOME</span>
-					</Link>
-					<Link href="/menu">
-						<span className="sm:text-xs md:text-xs lg:text-xl mx-4">OUR FOOD</span>
-					</Link>
-					<Link href="/reservation">
-						<span className="sm:text-xs md:text-xs lg:text-xl mx-4">RESERVATION</span>
-					</Link>
-					<Link href="/order">
-						<span className="sm:text-xs md:text-xs lg:text-xl mx-4">ABOUT</span>
-					</Link>
+					{user && userData && userData.length > 0 && userData[0].role == 'Client' && (
+						<>
+						<Link href="/">
+							<span className="sm:text-xs md:text-xs lg:text-xl mx-4">HOME</span>
+						</Link>
+						<Link href="/user/menu">
+							<span className="sm:text-xs md:text-xs lg:text-xl mx-4">OUR FOOD</span>
+						</Link>
+						<Link href="/user/reservation">
+							<span className="sm:text-xs md:text-xs lg:text-xl mx-4">RESERVATION</span>
+						</Link>
+						<Link href="/user/order">
+							<span className="sm:text-xs md:text-xs lg:text-xl mx-4">ORDER FOOD</span>
+						</Link>
+						</>
+					)}
+
+					{user && userData && userData.length > 0 && userData[0].role == 'Admin' && (
+						<>
+						<Link href="/">
+							<span className="sm:text-xs md:text-xs lg:text-xl mx-4">HOME</span>
+						</Link>
+						<Link href="/admin/menu">
+							<span className="sm:text-xs md:text-xs lg:text-xl mx-4">SET MENU</span>
+						</Link>
+						<Link href="/admin/reservation">
+							<span className="sm:text-xs md:text-xs lg:text-xl mx-4">VIEW RESERVATIONS</span>
+						</Link>
+						<Link href="/admin/order">
+							<span className="sm:text-xs md:text-xs lg:text-xl mx-4">ORDER FOOD</span>
+						</Link>
+						</>
+					)}
 
 					{!user ? (
 						<span
@@ -79,11 +115,11 @@ const Header = ({ setShowForm }) => {
 								<div className="absolute w-60 px-5 py-3 bg-orange-500 rounded-lg shadow border mt-12 -translate-x-60 -translate-y-2 z-50">
 								<ul className="space-y-3 text-white">
 									<li className="font-medium">
-										<Link href="/profile" className="flex items-center transform transition-colors duration-200 border-r-4 border-transparent hover:border-white text-white">
+										<Link href={user && userData && userData.length > 0 && userData[0].role === 'Admin' ? '/admin/profile' : '/user/profile'} className="flex items-center transform transition-colors duration-200 border-r-4 border-transparent hover:border-white text-white">
 											<div className="mr-3">
 												<svg className="w-6 h-6" fill="white" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
 											</div>
-											<span className='text-white text-lg'>Profile</span>
+											<span className='text-white text-lg'>{user && userData && userData.length > 0 && userData[0].role === 'Admin' ? 'Administration Panel' : 'Profile'}</span>
 										</Link>
 									</li>
 					

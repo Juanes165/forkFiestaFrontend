@@ -1,9 +1,9 @@
 'use client';
 import React, {useEffect, useState} from 'react';
-import {Header, ReservationCard, ReservationForm} from '../../components';
+import {Header, ReservationCard, ReservationForm} from '../../../components';
 import {useRouter} from 'next/navigation';
-import {Loader} from '../../components';
-import {auth} from '../../firebase.config';
+import {Loader} from '../../../components';
+import {auth} from '../../../firebase.config';
 const Reservation = () => {
 	// API GATEWAY URL
 	const gatewayApiUrl = process.env.NEXT_PUBLIC_GATEWAY_API_URL;
